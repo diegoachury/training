@@ -1,0 +1,61 @@
+<!DOCTYPE html><html lang="es" class="bg-dark">
+<head>
+<meta charset="utf-8"/>
+<title>aclase | lubu training</title>
+<meta name="description" content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<link rel="stylesheet" href="../../css/app.v2.css" type="text/css"/>
+<link rel="stylesheet" href="../../css/font.css" type="text/css" cache="false"/>
+<!--[if lt IE 9]> <script src="js/ie/html5shiv.js" cache="false"></script> <script src="js/ie/respond.min.js" cache="false"></script> <script src="js/ie/excanvas.js" cache="false"></script> <![endif]-->
+</head>
+<body>
+<section id="content" class="m-t-lg wrapper-md animated fadeInUp">
+<div class="container aside-xxl">
+
+	<a class="navbar-brand block" href="index.html"><img src="../images/logo.png" class="m-r-sm">aclase</a><section class="panel panel-default bg-white m-t-lg"><header class="panel-heading text-center"><strong>Inicio de sesión</strong></header>
+	<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+	<div class="panel-body wrapper-lg">
+				<% flash.each do |name, msg| %>
+			  <%= content_tag :div, :id => "flash_#{name}", :class => "alert" do %>
+			  <button type="button" class="close" data-dismiss="alert">&times;</button>
+			  <%= msg %>
+			  <% end %>
+			  <% end %>
+		<div class="form-group">
+			 <%= f.input :email, :required => false, :label => 'Correo Electronico', :autofocus => true, :placeholder =>"test@example.com", :input_html => { :class => ' form-control input-lg'} %>
+		</div>
+		<div class="form-group">
+			 <%= f.input :password, :required => false, :label => 'Contraseña', :placeholder =>"Contraseña", :input_html => { :class => ' form-control input-lg'} %>
+			
+		</div>
+		<div class="checkbox">
+		</div>
+		 <%= link_to "¿Cambiar Contraseña?", new_password_path(resource_name), :class=>"pull-right m-t-xs" %> <%= f.button :submit, "Iniciar", :class => 'btn btn-primary' %>
+		<div class="line line-dashed">
+		</div>
+		<div class="line line-dashed">
+		</div>
+		<p class="text-muted text-center">
+			<small>¿No tienes una cuenta?</small>
+		</p>
+		 <%= link_to "Crear una Cuenta", new_user_registration_path, :class => 'btn btn-default btn-block' %> 
+	</div>
+	<% end %>
+	</section>
+</div>
+</section>
+<!-- footer -->
+<footer id="footer">
+<div class="text-center padder">
+	<p>
+		<small>Web app aclase - lubu - training<br>
+		&copy; 2014</small>
+	</p>
+</div>
+</footer>
+<!-- / footer -->
+<script src="../../js/app.v2.js"></script>
+<!-- Bootstrap -->
+<!-- App -->
+</body>
+</html>

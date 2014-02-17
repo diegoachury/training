@@ -1,0 +1,61 @@
+
+<!DOCTYPE html><html lang="en" class="bg-dark">
+<head>
+<meta charset="utf-8"/>
+<title>aclase | lubu training</title>
+<meta name="description" content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<link rel="stylesheet" href="../../css/app.v2.css" type="text/css"/>
+<link rel="stylesheet" href="../../css/font.css" type="text/css" cache="false"/>
+<!--[if lt IE 9]> <script src="js/ie/html5shiv.js" cache="false"></script> <script src="js/ie/respond.min.js" cache="false"></script> <script src="js/ie/excanvas.js" cache="false"></script> <![endif]-->
+</head>
+<body>
+<section id="content" class="m-t-lg wrapper-md animated fadeInDown">
+<div class="container aside-xxl">
+		<a class="navbar-brand block" href="index.html"><img src="../images/logo.png" class="m-r-sm">aclase</a><section class="panel panel-default m-t-lg bg-white"><header class="panel-heading text-center"><strong>Crear Cuenta</strong></header>
+	<div class="panel-body wrapper-lg">
+		<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= f.error_notification %>
+
+		<div class="form-group">
+			    <%= f.input :name, :required => true, :label => 'Nombre Completo', :autofocus => true, :placeholder =>"Nombre completo", :input_html => { :class => ' form-control input-lg'} %>
+		</div>
+		<div class="form-group">
+			 <%= f.input :email, :required => true, :label => 'Correo Electronico', :placeholder =>"test@example.com", :input_html => { :class => ' form-control input-lg'} %>			 
+		</div>
+		<div class="form-group">
+			 <%= f.input :password, :required => true, :label => 'Contraseña',  :placeholder =>"Tu contraseña", :input_html => { :class => ' form-control input-lg'} %>			 
+		</div>
+		<div class="form-group">
+			 <%= f.input :password_confirmation, :required => true, :label => 'Confirmar contraseña',  :placeholder =>"Confirmar contraseña", :input_html => { :class => ' form-control input-lg'} %>			 
+		</div>
+		<div class="checkbox">
+			<label><input type="checkbox"> Acepta <a href="#">terminos y condiciones</a></label>
+		</div>
+		    <%= f.button :submit, "Registrar", :class => 'btn btn-primary' %>
+		<div class="line line-dashed">
+		</div>
+		<p class="text-muted text-center">
+			<small>¿Ya tienes una cuenta?</small>
+		</p>
+		<%= link_to "Acceder", new_user_session_path, :class => 'btn btn-default btn-block' %> 
+	</div>
+	<% end %>
+	</section>
+</div>
+</section>
+<!-- footer -->
+<footer id="footer">
+<div class="text-center padder clearfix">
+	<p>
+		<small>Web app aclase - lubu - training<br>
+		&copy; 2014</small>
+	</p>
+</div>
+</footer>
+<!-- / footer -->
+<script src="../../js/app.v2.js"></script>
+<!-- Bootstrap -->
+<!-- App -->
+</body>
+</html>

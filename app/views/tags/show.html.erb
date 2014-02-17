@@ -1,0 +1,33 @@
+<header class="header bg-white b-b b-light">
+	<p><%= @tag.title %></p>
+</header>
+<section class="scrollable wrapper">
+	<p id="notice"><%= notice %></p>
+	<div class="row"><!-- inicio columnas prinicipal-->
+			<% @tag.courses.each do |course| %>
+		<div class="col-sm-6 col-md-4"><!-- inicio columnas-->
+        <div class="thumbnail"><!-- inicia thumbnail-->
+        	<section class="panel panel-info"> 
+        		<div class="panel-body"> 
+        			<a href="#" class="thumb pull-right m-l"> <img src="../images/avatar.jpg" class="img-circle"> </a> 
+        			<label class=" pull-right label label-warning"><%= course.level%></label>
+        			<div class="clear">
+        				<%= link_to  course do %>
+        				<span class="text-info" ><%= course.title %></span><br>
+        				<%end%>
+        				<div>
+        					<br>
+        				<small class="block text-muted"><%= course.descrition%></small> 
+        				</div>
+        				 <br>
+        				<%= link_to "ingresar",  course, :class => 'btn btn-xs btn-success m-t-xs' %>
+        			</div> 
+        		</div>
+        	</section>
+        	<%= link_to 'Editar', edit_tag_path(@tag) %> |
+			<%= link_to 'Atras', tags_path %>
+        </div><!-- finaliza thumbnail-->
+      </div> <!-- finaliza columnas-->
+      <% end %>
+    </div><!-- finaliza columnas prinicipal-->
+</section>

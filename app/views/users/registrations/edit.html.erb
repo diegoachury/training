@@ -1,0 +1,188 @@
+<!DOCTYPE html><html lang="en" class="app">
+<head>
+<meta charset="utf-8"/>
+<title>aclase | lubu training</title>
+<meta name="description" content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<link rel="stylesheet" href="../css/app.v2.css" type="text/css"/>
+<link rel="stylesheet" href="../css/font.css" type="text/css" cache="false"/>
+<!--[if lt IE 9]> <script src="js/ie/html5shiv.js" cache="false"></script> <script src="js/ie/respond.min.js" cache="false"></script> <script src="js/ie/excanvas.js" cache="false"></script> <![endif]-->
+</head>
+<body>
+<section class="vbox">
+  <!--inicio header -->
+<%= render 'shared/header'%>
+  <!-- fin header -->
+<section><section class="hbox stretch">
+<!-- .aside -->
+<%= render 'shared/nav'%>
+<!-- /.aside -->
+<section id="content"><section class="vbox"><header class="header bg-white b-b b-light">
+<p>
+  <%= current_user.name %> Editar Perfil
+</p>
+</header><section class="scrollable"><section class="hbox stretch"><aside class="aside-lg bg-light lter b-r"><section class="vbox"><section class="scrollable">
+<div class="wrapper">
+  <div class="clearfix m-b">
+    <a href="#" class="pull-left thumb m-r"><img src="../images/avatar.jpg" class="img-circle"></a>
+    <div class="clear">
+      <div class="h4 m-t-xs m-b-xs">
+        <%= current_user.name %>
+      </div>
+      <small class="text-muted"><i class="fa fa-map-marker"></i> <%= current_user.ciudad %></small>
+    </div>
+  </div>
+  <div class="panel wrapper panel-success">
+    <div class="row">
+      <div class="col-xs-5">
+        <span class="m-b-xs h4 block">245</span><small class="text-muted">Puntaje</small>
+      </div>
+      <div class="col-xs-5">
+        <span class="m-b-xs h4 block">55</span><small class="text-muted">Completo</small>
+      </div>
+    </div>
+  </div>
+  <div class="btn-group btn-group-justified m-b">
+    <div class="btn btn-primary btn-rounded" data-toggle="button"><span class="text"> 
+      <% if current_user.active == true %>  
+       Activo
+       <% else %>
+       Inactivo
+      <%end%>
+    </span>
+  </div>
+  </div>
+  <div>
+    <small class="text-uc text-xs text-muted">Perfil</small>
+    <p>
+      <%= current_user.perfil %>
+    </p>
+    <small class="text-uc text-xs text-muted">info</small>
+    <p>
+      <%= current_user.info %>
+    </p>
+    <div class="line">
+    </div>
+    <small class="text-uc text-xs text-muted">connection</small>
+    <p class="m-t-sm">
+      <i class="fa fa-twitter"></i> <%= current_user.twitter %> <br>
+    </p>
+  </div>
+</div>
+</section></section></aside><aside class="bg-white"><section class="vbox"><section class="scrollable">
+<!--formulario-->
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+  <%= f.error_notification %>
+<form data-validate="parsley">
+  <section class="panel panel-default"><header class="panel-heading"><span class="h4">Actualizar</span></header>
+  <div class="panel-body">
+    <p class="text-muted">
+      Por favor, complete la información para continuar
+    </p>
+    <div class="form-group">
+       <%= f.input :name, :required => true, :label => 'Nombre Completo', :autofocus => true, :placeholder =>"Nombre completo", :input_html => { :class => ' form-control parsley-validated'} %>
+    </div>
+    <div class="form-group">
+      <%= f.input :email, :required => true, :label => 'Correo Electronico', :placeholder =>"test@example.com", :input_html => { :class => ' form-control parsley-validated'} %>
+    </div>
+     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+    <% end %>
+    <div class="form-group pull-in clearfix">
+      <div class="col-sm-12">
+      <p>Dejarlo en blanco si no quiere cambiar tu contraseña actual</p>
+    </div>
+      <div class="col-sm-6">
+        <%= f.input :password, :autocomplete => "off", :required => false, :label => 'Contraseña',  :placeholder =>"Nueva contraseña", :input_html => { :class => ' form-control parsley-validated'} %>  
+      </div>
+      <div class="col-sm-6">
+        <%= f.input :password_confirmation, :required => false, :label => 'Confirmar contraseña',  :placeholder =>"Confirmar nueva contraseña", :input_html => { :class => ' form-control parsley-validated'} %>  
+      </div>
+    </div>
+    <div class="form-group">
+       <%= f.input :ciudad, :label => 'Ciudad', :placeholder =>"Digita tu ciudad", :input_html => { :class => ' form-control parsley-validated', :id => 'geocomplete'} %>
+    </div>
+    <div class="form-group">
+      <%= f.input :phone, :label => 'Telefono', :placeholder =>"(XXX) XXXX XXX", :input_html => { :class => ' form-control parsley-validated'} %>
+    </div>
+    <div class="form-group pull-in clearfix">
+      <div class="col-sm-6">
+        <%= f.input :twitter, :label => 'Twitter', :placeholder =>"@example_twitter", :input_html => { :class => ' form-control parsley-validated'} %>
+      </div>
+      <div class="col-sm-6">
+        <%= f.input :facebook, :label => 'Facebook', :placeholder =>"http://www.facebook.com/example", :input_html => { :class => ' form-control parsley-validated'} %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.input :perfil, :label => 'Perfil', :collection => [['Técnico', 'Técnico'], ['Tecnólogo', 'Tecnólogo'], ['Estudiante', 'Estudiante'], ['Profesional', 'Profesional']], :as => :select, :input_html => { :class => 'form-control m-t parsley-validated'} %>
+    </div>
+    <div class="form-group">
+       <%= f.input :about, :label => 'Titulo', :placeholder =>"Ej: Diseño Grafico", :hint => "Dejar vacio si no tienes ningún titulo ", :input_html => { :class => ' form-control parsley-validated'} %>
+    </div>
+    <div class="form-group">
+    <%= f.input :info, as: :text, :label => 'Información', :placeholder =>"Soy Estudiante de ingenieria....", :input_html => { :class => ' form-control parsley-validated', :row=> '6'} %> 
+    </div>
+     <div class="form-group"> 
+       <%= f.input :current_password, :required => true, :hint => "Necesitamos su contraseña actual para confirmar los cambios", :label => 'Confirmar cambios',  :placeholder =>"Contraseña actual", :input_html => { :class => ' form-control parsley-validated'} %> 
+    </div>
+    
+  </div>
+  <footer class="panel-footer text-right bg-light lter">
+        <%= f.button :submit, "Actualizar", :class => 'btn btn-success btn-s-xs' %>
+  </footer>
+</section>
+</form>
+<% end %>
+<!--finaliza formulario-->
+</section></section></aside><aside class="col-lg-4 b-l "><section class="vbox"><section class="scrollable">
+<section class="panel panel-default" id="progressbar"> <header class="panel-heading"><span class="h4">Progreso</span></header>
+<ul class="list-group">
+  <li class="list-group-item">
+    <strong>ruby</strong>
+    <div class="progress progress-sm m-t-sm"> 
+
+      <div class="progress-bar progress-bar-info" data-toggle="tooltip" data-original-title="95%" style="width: 95%;"></div> 
+    </div>
+  </li>
+  <li class="list-group-item">
+    <strong>sql</strong>
+    <div class="progress progress-sm m-t-sm"> 
+
+      <div class="progress-bar progress-bar-warning" data-toggle="tooltip" data-original-title="95%" style="width: 95%;"></div> 
+    </div>
+  </li>
+</ul>
+</section>
+</section></section></aside></section></section></section><a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a></section><aside class="bg-light lter b-l aside-md hide" id="notes">
+<div class="wrapper">
+  Notification
+</div>
+</aside></section></section></section>
+<script src="../js/app.v2.js"></script>
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+<script src="../js/geocomplete/jquery.geocomplete.js"></script>
+<script>
+ $(function(){
+        
+        $("#geocomplete").geocomplete()
+          .bind("geocode:result", function(event, result){
+            $.log("Result: " + result.formatted_address);
+          })
+          .bind("geocode:error", function(event, status){
+            $.log("ERROR: " + status);
+          })
+          .bind("geocode:multiple", function(event, results){
+            $.log("Multiple: " + results.length + " results found");
+          });  
+        
+        $("#examples a").click(function(){
+          $("#geocomplete").val($(this).text()).trigger("geocode");
+          return false;
+        });
+        
+      });
+</script>
+<!-- Bootstrap -->
+<!-- App -->
+</body>
+</html>
